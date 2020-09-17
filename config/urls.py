@@ -20,9 +20,11 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
 
+# パスに対してどう紐づけるかを記載
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("api.urls")),
+    # 正しいemailとpasswordをpostメソッドでauthenにアクセスするとtokenを発行
     path("authen/", include("djoser.urls.jwt")),
 ]
 

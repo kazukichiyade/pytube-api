@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 必須
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "djoser",
 ]
 
+# 必須
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# 必須
 CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
 
 ROOT_URLCONF = "config.urls"
@@ -77,6 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+# 必須(認証を全体に適用させる為 ※細かいカスタマイズはviews.pyに)
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
@@ -86,6 +90,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+# 必須(tokenの有効期限を指定)
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("JWT",),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
@@ -135,6 +140,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+# 必須 Userモデルを指定
 AUTH_USER_MODEL = "api.User"
 
 
@@ -143,5 +149,8 @@ AUTH_USER_MODEL = "api.User"
 
 STATIC_URL = "/static/"
 
+# 必須
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# 必須
 MEDIA_URL = "/media/"
