@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 
+from django.conf.urls.static import static
+from django.conf import settings
+
+# パスに対してどう紐づけるかを記載
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("api/", include("api.urls")),
+    # 正しいemailとpasswordをpostメソッドでauthenにアクセスするとtokenを発行
+    path("authen/", include("djoser.urls.jwt")),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
